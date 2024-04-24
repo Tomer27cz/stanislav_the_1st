@@ -81,21 +81,33 @@ class Bot(dc_commands.Bot):
             return
 
         elif before.channel is None:
+            # get voice client
             voice = after.channel.guild.voice_client
 
+            # initialize loop
+            time_var = 0
             while True:
-                if voice.is_playing() and not voice.is_paused():
-                    continue
-
-                voice.stop()
-                await voice.disconnect()
-
-                log(guild_id, f"-->> Disconnecting after no play <<--")
-
-                if not voice.is_connected():
-                    break
-
+                # check every second
                 await asyncio.sleep(5)
+
+                # increase time_var
+                time_var += 5
+
+                # check if bot is playing and not paused
+                if voice.is_playing() and not voice.is_paused():
+                    time_var = 0  # reset time_var
+
+                # check if time_var is greater than buffer
+                if time_var >= 30:
+                    # stop playing and disconnect
+                    voice.stop()
+                    await voice.disconnect()
+
+                    log(guild_id, "-->> Disconnecting after 30 seconds of inactivity <<--")
+
+                # check if bot is disconnected
+                if not voice.is_connected():
+                    break  # break loop
 
     async def on_command_error(self, ctx, error):
         # get error traceback
