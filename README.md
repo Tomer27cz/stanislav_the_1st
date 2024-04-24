@@ -2,6 +2,8 @@
  A very simple YouTube music bot.
 
 ## Config Template
+
+Create a file named `config.py` in the root directory of the project and fill it with the following content:
 ```
 # Description: Configuration file for the bot
 # Discord
