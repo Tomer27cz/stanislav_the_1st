@@ -1,11 +1,11 @@
 version: "3.7"
 
 services:
-  simple-bot:
+  sbot:
     build: .
     command: python -u /app/main.py >> /app/activity.log 2>&1
     privileged: true
     volumes:
       - .:/app
-    container_name: simple_bot
+    container_name: sbot
     restart: always
