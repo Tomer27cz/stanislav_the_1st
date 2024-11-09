@@ -19,5 +19,5 @@ PREFIX = "YOUR_PREFIX."
 PERMISSIONS = 3198017
 INVITE_URL = f"https://discord.com/api/oauth2/authorize?client_id={CLIENT_ID}&permissions={PERMISSIONS}&scope=bot"
 
-DEVELOPER_ID = YOUR_DISCORD_ID
+DEVELOPER_ID = 349164237605568513
 ```
